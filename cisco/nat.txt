@@ -1,0 +1,11 @@
+Topology: LAN - (NAT Inside) - [In Interface]Router[Out Interface] - (NAT Outside) - WAN
+
+PAT Setting:
+Router(config)#interface <interface>
+Router(config-if)#ip nat outside/inside
+Router(config)#ip access-list standard <NAT_ACL_NAME>
+Router(config-std-nacl)#permit <lan_network> <wildcard>
+Router(config)#ip nat inside source list <NAT_ACL_NAME> interface <out_interface> overload
+
+Static NAT:
+Router(config)#ip nat inside source static <transport(tcp/upd)> <lan_host_ip> <lan_host_port> <wan_host_ip> <wan_host_port>

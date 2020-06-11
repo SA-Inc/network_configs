@@ -1,0 +1,12 @@
+OSPF - Link State
+
+Router(config)#interface loopback 0
+Router(config-if)# ip address <network> <mask/32>
+
+Router(config)#router ospf <process_number>
+Router(config-router)#network <connected_network_to_router> <wildcard> area <number>
+
+Router(config-router)#default-information originate
+
+Router#show ip ospf neighbor
+
