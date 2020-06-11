@@ -1,0 +1,29 @@
+Client              Server
+      --[Discover]->
+      <---[Offer]---
+      --[Request]-->
+            or
+      --[Decline]-->
+      <---[Ack]-----
+            or
+      <---[Nak]-----
+      --[Release]-->
+
+DHCP Server on Router:
+Router(config)#interface <interface>
+Router(config-if)#ip address <ipv4> <sub_net_mask>
+
+Router(config)#ip dhcp pool <DHCP_POOL_NAME>
+Router(dhcp-config)#network <ipv4_network> <sub_net_mask>
+Router(dhcp-config)#default-router <ipv4_interface>
+Router(dhcp-config)#dns-server <ipv4>
+for static IP Addresses:
+Router(config-dhcp)#ip dhcp excluded-address <ipv4>
+
+
+DHCP Server on Server(DHCP Relay)
+Switch: if VLAN, setup Access for Hosts & trunk for Router. On Router up Sub-Interfaces
+DHCP Server: setting DHCP Pools
+Router:
+Router(config)#interface <interface>.<sub>
+Router(config-subif)#ip helper-address <dhcp_server_ip_address>

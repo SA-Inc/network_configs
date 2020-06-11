@@ -1,0 +1,5 @@
+Router(config)#ip dhcp pool VOICE
+Router(dhcp-config)#network <ipv4_network> <sub_net_mask>
+RouterA(dhcp-config)#default-router <ipv4_interface>
+RouterA(dhcp-config)#option 150 ip <ipv4_interface> #Mandatory for voip configuration.
+

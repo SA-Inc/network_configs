@@ -1,0 +1,33 @@
+Set Password for Root Mode:
+
+Switch>enable
+Switch#configure terminal
+Switch(config)#enable password <pwd>
+Switch(config)#service password-encryption
+
+or 
+
+Switch(config)#enable secret <pwd>
+Switch(config)#enable algorithm-type sha256 secret cisco
+
+enable password - plain text
+enable secret - hashed text(MD-5 by default) or use SHA-256
+SECRET HAS MORE PRIORITY
+for more security, use 'service password-encryption'
+
+
+
+Up Remote Access:
+Switch(config)#line vty 0 4
+Switch(config-line)#transport input ssh/telnet
+Switch(config-line)#login local
+
+
+
+Add User:
+Switch(config)# username <usr> privilege <0-15> algorithm-type sha256 secret <pwd>
+// 0 - low, 15 - high
+
+Apply User:
+Switch(config)#line console/vty <number>
+Switch(config-line)#login local

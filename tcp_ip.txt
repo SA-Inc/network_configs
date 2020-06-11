@@ -1,0 +1,16 @@
+     OSI      |   TCP/IP    |       PDU        | Device                |          Protocol         |
+--------------+-------------+------------------+-----------------------+---------------------------+
+ Application  |             |                  |                       | HTTP, SMTP, IMAP, SSH     |
+--------------+             |                  |                       | SSH, DNS, RIP, SNMP, FTP  |
+ Presentation | Application | Data             |                       | DHCP, BGP, NTP            |
+--------------+             |                  | Host                  |                           |
+ Session      |             |                  |                       |                           |
+--------------+-------------+------------------+-----------------------+---------------------------+
+ Transport    | Transport   | Segment/Datagram | Firewall              | TCP, UDP, SCTP            |
+--------------+-------------+------------------+-----------------------+---------------------------+
+ Network      | Network     | Packet           | Router                | IP, ICMP, IGMP, NAT       |
+--------------+-------------+------------------+-----------------------+---------------------------+
+ Data Link    | Network     | Frame            | Switch, Bridge        | ARP, LLC, MAC, Ethernet   |
+--------------+             +------------------+-----------------------+                           |
+ Physical     | Interface   | Bits             | Hub, NIC, Cable, Wave | Wi-Fi, STP, OSPF          |
+--------------+-------------+------------------+-----------------------+---------------------------+

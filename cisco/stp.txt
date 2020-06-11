@@ -1,0 +1,6 @@
+Enable RSTP
+Switch(config)# spanning-tree mode rapid-pvst
+
+Change Priority:
+Switch(config)# spanning-tree vlan <num> priority
+Switch(config)# spanning-tree vlan <num> root priority

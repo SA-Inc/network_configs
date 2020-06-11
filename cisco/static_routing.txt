@@ -1,0 +1,7 @@
+Topology: R1->[via_R2_interface]->R2->[dest_network]
+
+Static Route on Router:
+Router(config)#ip route <dest_network> <dest_network_subnet_mask> <via_interface_ip_address_next_router>
+
+Default Route:
+Router(config)#ip route 0.0.0.0 0.0.0.0 <via_interface_ip_address_next_router>

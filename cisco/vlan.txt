@@ -1,0 +1,84 @@
+Topology: Host --(access)--> Switch --(trunk)--> Switch --(access)--> Host
+
+Set IP Address for VLAN:
+Switch(config)#interface Vlan1
+Switch(config-if)#ip address <ipV4> <sub_net_mask>
+
+
+Create VLAN:
+Switch(config)#vlan <number>
+Switch(config-vlan)#name <vlan_name>
+
+
+
+Access:
+Switch(config)#interface <interface>
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan <NUMBER>
+
+
+
+Trunk:
+Switch(config)#interface <interface>
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk allowed vlan <NUMBER, NUMBER>
+
+Switch(config-if)#switchport trunk encapsulation dot1q
+
+
+
+Channel Aggregation(EtherChannel):
+Ports must have same:
+- Speed;
+- Transmission Mode;
+- Native VLAN;
+- Permitted VLAN Range;
+- Trunking Status;
+- Interface Type.
+
+Static(Each L2 Switch):
+Switch(config)#interface range <interfaces>
+Switch(config-if-range)#channel-group <number> mode on
+if VLAN Trunk
+Switch(config)#interface port-channel <number>
+Switch(config-if)#switchport mode trunk
+Switch(config-if)#switchport trunk allowed vlan <NUMBER, NUMBER>
+
+
+Dynamic(LACP/PAgP):
+L3 Switch or Router(Distribution Layer)
+Switch(config)#interface range <interfaces>
+Switch(config-if-range)#channel-protocol lacp
+Switch(config-if-range)#channel-group <number> mode active
+
+L2 Switch(Access Layer)
+Switch(config)#interface range <interfaces>
+Switch(config-if-range)#channel-protocol lacp
+Switch(config-if-range)#channel-group <number> mode passive 
+// NUMBER is not group Number on L3 Switch. May be not equal
+
+
+
+VLAN Routing:
+L3 Switch
+Switch(config)#vlan <number>
+Switch(config-vlan)#name <vlan_name>
+
+Switch(config)#interface <interface>
+Switch(config-if)#switchport mode access
+Switch(config-if)#switchport access vlan <number>
+
+Switch(config)#interface vlan <number>
+Switch(config-if)#ip address <ipV4> <sub_net_mask>
+
+Switch(config)#ip routing
+
+L2 Switch
+Access & Trunk
+
+
+
+Create Sub-Interface on Router & assign VLAN:
+Switch(config)#interface <interface>.<sub>
+Switch(config-subif)#encapsulation dot1q <vlan_number>
+Switch(config-subif)#ip address <ipV4> <sub_net_mask>
