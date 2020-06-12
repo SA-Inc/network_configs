@@ -1,0 +1,100 @@
+ACL(Access Control List) => ACEs(Access Control Entries)
+
+Types:
+1. Standard: OSI Level 3, Source IP Address
+2. Extended: OSI Level 3 & 4, Source & Destination IP Address & TCP/UDP Port, Optional Protocol Type Info
+
+Standard ACL - Destination of filtered Traffic
+Extended ACL - Source of filtered Traffic
+
+In(Std ACL) -> Router -> Out(Ext ACL)
+
+Wildcard:
+0 - Match
+1 - Ignore
+
+Attributes:
+- Policy
+- IP ver.
+- Protocol
+- Source IP
+- Source Port
+- Destination IP
+- Destination Port
+- VLAN
+
+Steps:
+1. Plan
+2. Write configuration
+3. Document
+4. Test
+5. Apply
+
+Actions:
+permit - Allow matched packets
+deny - Deny matched packets
+remark - Record a configuration comment
+evaluate - Evaluate a reflexive ACL
+
+Standard ACL Syntax:
+Router(config)#ip access-list standard {<number>/<name>} [<sequence>] {permit/deny} <source> [log]
+
+Extended ACL Syntax:
+Router(config)#ip access-list extended {<number>/<name>} [<sequence>] {permit/deny} <protocol> <source> [<ports>] <destination> [<ports>] [<options>]
+
+Apply ACL for Interface:
+Router(config-if)#[no] ip access-group {<number>/<name>} {in/out}
+
+Source/Destination:
+any - any Addreese
+host <address> - specific IP Address
+<network> <wildcard_mask>
+
+Protocol Options:
+ip, icmp, tcp, udp
+
+ACL Numbers:
+1-99/1300-1999 - IP standard
+100-199/2000-2699 - IP extended
+200-299 - Protocol
+300-399 - DECnet
+400-499 - XNS
+500-599 - Extended XNS
+600-699 - Appletalk
+700-799 - Ethernet MAC
+800-899 - IPX standard
+900-999 - IPX extended
+1000-1099 - IPX SAP
+1100-1199 - MAC extended
+1200-1299 - IPX summary
+
+TCP Options:
+ack - Match ACK flag
+fin - Match FIN flag
+psh - Match PSH flag
+rst - Match RST flag
+syn - Match SYN flag
+urg - Match URG flag
+established - Match packets in an established session
+
+IP Options:
+dscp <DSCP> - Match the specified IP DSCP
+fragments - Check non-initial fragments
+option <option> - Match the specified IP option
+precedence {0-7} - Match the specified IP precedence
+ttl <count> - Match the specified IP time to live (TTL)
+
+TCP/UDP Port Definitions:
+eq <port> - Equal to
+neq <port> - Not equal to
+lt <port> - Less than
+gt <port> - Greater than
+range <port> <port> - Matches a range of port numbers
+
+Miscellaneous Options:
+reflect <name> - Create a reflexive ACL entry
+time-range <name> - Enable rule only during the given time range
+
+Logging Options:
+log - Log ACL entry matches
+log-input - Log matches including ingress interface and source MAC address

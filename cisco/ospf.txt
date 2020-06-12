@@ -9,4 +9,3 @@ Router(config-router)#network <connected_network_to_router> <wildcard> area <num
 Router(config-router)#default-information originate
 
 Router#show ip ospf neighbor
-
