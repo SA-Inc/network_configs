@@ -1,0 +1,19 @@
+Set Interface Address
+IP -> Addresses -> [+]
+- Address - IP/Mask
+- Network - not fill
+- Interface - # Ethernet
+
+
+Create Network LAN Bridge
+1 Bridge - N Eth. Interfaces
+MAC Bridge - allow VLAN Interconnection. Can't be traced
+
+Bridge -> [+]
+- Name
+- ARP = reply-only
+
+Add Ports (for each needed Interface)
+Ports -> [+]
+- Interface
+- Bridge
